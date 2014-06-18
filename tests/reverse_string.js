@@ -2,14 +2,13 @@
 /*global require, describe:true, it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/string_reverse.js');
+    test = require('../src/reverse_string.js');
 
-describe('String Reverse', function () {
-    var module;
+describe('Reverse String', function () {
 
     it('should reverse a string', function (done) {
 
-        expect(test.reverse("the sky is blue")).to.equal("blue is sky the");
+        expect(test("the sky is blue")).to.equal("blue is sky the");
         done();
 
     });
