@@ -9,7 +9,7 @@ describe('String Reverse', function () {
 
     it('should reverse a string', function (done) {
 
-        expect(test.reverse("abcdef")).to.equal("fedcba");
+        expect(test.reverse("the sky is blue")).to.equal("blue is sky the");
         done();
 
     });
