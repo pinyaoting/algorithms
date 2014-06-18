@@ -2,15 +2,9 @@
 'use strict';
 
 var reverseString = function (data) {
-    var length = data.length,
-	reverse = [],
-	i;
-
-    for (i = 1; i <= length; i += 1) {
-        reverse.push(data[length - i]);
-    }
-
-    return reverse.join("");
+    return data.split(' ').reduce(function (prev, current) {
+        return current + ' ' + prev;
+    });
 };
 
 exports.reverse = reverseString;
