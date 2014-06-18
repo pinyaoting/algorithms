@@ -7,4 +7,4 @@ var reverseString = function (data) {
     });
 };
 
-exports.reverse = reverseString;
+module.exports = reverseString;
