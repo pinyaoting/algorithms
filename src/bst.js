@@ -1,19 +1,22 @@
 /*jslint indent: 4, nomen:true, white:true, continue:true */
 'use strict';
-var Node, BinarySearchTree, createBST;
-
-Node = function (item) {
-    this.data = item;
-    this.left = null;
-    this.right = null;
-};
+var TreeNode = require('./treenode.js'),
+    BinarySearchTree;
 
 BinarySearchTree = function () {
     this.root = null;
+    return {
+        insert: function (item) {
+            return this._insert(item);
+        }.bind(this),
+        search: function (item) {
+            return this._search(item);
+        }.bind(this)
+    };
 };
 
 BinarySearchTree.prototype = {
-    getClosest:  function (item) {
+    _getClosest:  function (item) {
         var pivot = this.root;
         while (pivot) {
             if (item < pivot.data) {
@@ -38,24 +41,24 @@ BinarySearchTree.prototype = {
         }
         return pivot;
     },
-    insert: function (item) {
-        var closest = this.getClosest(item);
+    _insert: function (item) {
+        var closest = this._getClosest(item);
         if (!closest) {
-            this.root = new Node(item);
+            this.root = new TreeNode(item);
             return true;
         }
         if (item < closest.data) {
-            closest.left = new Node(item);
+            closest.left = new TreeNode(item);
             return true;
         }
         if (item > closest.data) {
-            closest.right = new Node(item);
+            closest.right = new TreeNode(item);
             return true;
         }
         return false;
     },
-    search: function (item) {
-        var closest = this.getClosest(item);
+    _search: function (item) {
+        var closest = this._getClosest(item);
         if (!closest || closest.data !== item) {
             return null;
         }
@@ -63,16 +66,4 @@ BinarySearchTree.prototype = {
     }
 };
 
-createBST = function () {
-    var _bst = new BinarySearchTree();
-    return {
-        insert: function (item) {
-            return _bst.insert(item);
-        },
-        search: function (item) {
-            return _bst.search(item);
-        }
-    };
-};
-
-module.exports = createBST;
+module.exports = BinarySearchTree;

@@ -8,7 +8,7 @@ describe('BST', function () {
     var module, result;
 
     beforeEach(function () {
-        module = test();
+        module = new test();
     });
 
     afterEach(function () {
