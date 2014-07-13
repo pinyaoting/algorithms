@@ -1,11 +1,19 @@
 /*jslint indent: 4, nomen:true, white:true */
 'use strict';
-var Queue, createQueue;
+var Queue;
 
 Queue = function () {
     this.data = {};
     this.start = 0;
     this.end = 0;
+    return {
+        enqueue: function (item) {
+            this.enqueue(item);
+        }.bind(this),
+        dequeue: function () {
+            return this.dequeue();
+        }.bind(this)
+    };
 };
 
 Queue.prototype = {
@@ -24,16 +32,4 @@ Queue.prototype = {
     }
 };
 
-createQueue = function () {
-    var _queueInstance = new Queue();
-    return {
-        enqueue: function (item) {
-            _queueInstance.enqueue(item);
-        },
-        dequeue: function () {
-            return _queueInstance.dequeue();
-        }
-    };
-};
-
-module.exports = createQueue;
+module.exports = Queue;

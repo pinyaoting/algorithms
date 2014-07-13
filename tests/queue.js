@@ -9,7 +9,7 @@ describe('Queue', function () {
 
     it('should be FIFO', function (done) {
 
-        module = test();
+        module = new test();
         module.enqueue('a');
         module.enqueue('b');
         module.enqueue('c');
