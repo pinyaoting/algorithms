@@ -9,7 +9,7 @@ describe('Stack', function () {
 
     it('should be LIFO', function (done) {
 
-        module = test();
+        module = new test();
         module.push('a');
         module.push('b');
         module.push('c');
