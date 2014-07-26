@@ -39,4 +39,17 @@ describe('BST', function () {
         expect(module.insert(1)).to.equal(false);
         done();
     });
+    
+    it('should be able to delete node', function (done) {
+        module.insert(4);
+        module.insert(1);
+        module.insert(6);
+        module.insert(3);
+        module.insert(5);
+        module.insert(2);
+        result = module.remove(1);
+        result = module.search(1);
+        expect(result).to.be.null;
+        done();
+    });
 });
