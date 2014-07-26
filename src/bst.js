@@ -9,6 +9,9 @@ BinarySearchTree = function () {
         insert: function (item) {
             return this._insert(item);
         }.bind(this),
+        remove: function (item) {
+            return this._remove(item);
+        }.bind(this),
         search: function (item) {
             return this._search(item);
         }.bind(this)
@@ -16,11 +19,14 @@ BinarySearchTree = function () {
 };
 
 BinarySearchTree.prototype = {
-    _getClosest:  function (item) {
+    _traverse: function (item, searchForParent) {
         var pivot = this.root;
         while (pivot) {
+            if (item === pivot.data) {
+                return pivot;
+            }
             if (item < pivot.data) {
-                if (!pivot.left) {
+                if (searchForParent && (!pivot.left || item === pivot.left.data)) {
                     return pivot;
                 }
                 pivot = pivot.left;
@@ -28,41 +34,89 @@ BinarySearchTree.prototype = {
             }
 
             if (item > pivot.data) {
-                if (!pivot.right) {
+                if (searchForParent && (!pivot.right || item === pivot.right.data)) {
                     return pivot;
                 }
                 pivot = pivot.right;
                 continue;
             }
-
-            if (item === pivot.data) {
-                return pivot;
-            }
         }
         return pivot;
     },
     _insert: function (item) {
-        var closest = this._getClosest(item);
-        if (!closest) {
+        var ancestor = this._traverse(item, true);
+        if (!ancestor) {
             this.root = new TreeNode(item);
             return true;
         }
-        if (item < closest.data) {
-            closest.left = new TreeNode(item);
+        if (item < ancestor.data) {
+            if (ancestor.left) {
+                return false; // duplicate entry
+            }
+            ancestor.left = new TreeNode(item);
             return true;
         }
-        if (item > closest.data) {
-            closest.right = new TreeNode(item);
+        if (item > ancestor.data) {
+            if (ancestor.right) {
+                return false; // duplicate entry
+            }
+            ancestor.right = new TreeNode(item);
             return true;
         }
         return false;
     },
     _search: function (item) {
-        var closest = this._getClosest(item);
-        if (!closest || closest.data !== item) {
-            return null;
+        return this._traverse(item, false);
+    },
+    _remove: function (item) {
+        var target,
+            child,
+            pivot,
+            ancestor = this._traverse(item, true);
+
+        if (!ancestor) {
+            return false;
         }
-        return closest;
+        if (item < ancestor.data) {
+            if (ancestor.left) {
+                target = ancestor.left;
+                child = 'left';
+            }
+        }
+        if (item > ancestor.data) {
+            if (ancestor.right) {
+                target = ancestor.right;
+                child = 'right';
+            }
+        }
+
+        // case 1: target has no children, return directly after removal
+        if (!target.left && !target.right) {
+            ancestor[child] = null;
+            return true;
+        }
+        // case 2: target has one sub-tree
+        if (target.left && !target.right) {
+            ancestor[child] = target.left;
+            return true;
+        }
+        if (!target.left && target.right) {
+            ancestor[child] = target.right;
+            return true;
+        }
+        // case 3: target has both subtree
+        if (target.left && target.right) {
+            // swap with the rightmost element of left subtree, then recursively delete 
+            pivot = target.left;
+            while (pivot.right) {
+                ancestor = pivot;
+                pivot = pivot.right;
+            }
+            target.data = pivot.data;
+            if (pivot.left) {
+                ancestor.right = pivot.left;
+            }
+        }
     }
 };
 
