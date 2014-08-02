@@ -1,11 +1,11 @@
 /*jslint indent: 4, nomen:true, white:true */
 'use strict';
-var findMaxPoints;
+var findMaximumColinearPoints;
 
 /*
  * Given an array of points on a plane, find the maximum number of points that are co-linear.
  */
-findMaxPoints = function (points) {
+findMaximumColinearPoints = function (points) {
     if (!Array.isArray(points)) {
         return 0;
     }
@@ -29,4 +29,4 @@ findMaxPoints = function (points) {
     return Math.max.apply(Math, results);
 };
 
-module.exports = findMaxPoints;
+module.exports = findMaximumColinearPoints;

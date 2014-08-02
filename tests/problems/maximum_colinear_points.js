@@ -3,7 +3,7 @@
 
 var expect = require('chai').expect,
     Point = require('../../src/data-structures/point.js'),
-    test = require('../../src/problems/max_point_on_a_line.js');
+    test = require('../../src/problems/maximum_colinear_points.js');
 
 describe('Maximum Colinear Points', function () {
 
