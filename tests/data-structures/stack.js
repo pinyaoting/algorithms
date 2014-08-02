@@ -2,7 +2,7 @@
 /*global require, describe:true,it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/stack.js');
+    test = require('../../src/data-structures/stack.js');
 
 describe('Stack', function () {
     var module;

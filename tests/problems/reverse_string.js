@@ -2,7 +2,7 @@
 /*global require, describe:true, it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/reverse_string.js');
+    test = require('../../src/problems/reverse_string.js');
 
 describe('Reverse String', function () {
 

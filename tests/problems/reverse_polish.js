@@ -2,7 +2,7 @@
 /*global require, describe:true, it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/reverse_polish.js');
+    test = require('../../src/problems/reverse_polish.js');
 
 describe('Reverse Polish Notation', function () {
 

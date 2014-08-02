@@ -2,7 +2,7 @@
 /*global require, describe:true,it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/bst.js');
+    test = require('../../src/data-structures/bst.js');
 
 describe('BST', function () {
     var module, result;

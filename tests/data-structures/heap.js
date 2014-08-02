@@ -2,7 +2,7 @@
 /*global require, describe:true,it:true*/
 
 var expect = require('chai').expect,
-    test = require('../src/heap.js');
+    test = require('../../src/data-structures/heap.js');
 
 describe('Max Heap', function () {
     var module;

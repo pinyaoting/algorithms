@@ -2,7 +2,7 @@
 /*global require, describe:true,it:true */
 
 var expect = require('chai').expect,
-    test = require('../src/queue.js');
+    test = require('../../src/data-structures/queue.js');
 
 describe('Queue', function () {
     var module;
