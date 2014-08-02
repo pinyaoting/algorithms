@@ -7,7 +7,7 @@ var findMaxPoints;
  */
 findMaxPoints = function (points) {
     if (!Array.isArray(points)) {
-        return;
+        return 0;
     }
 
     var i, j, occurrence, max, slope, count,
@@ -24,9 +24,9 @@ findMaxPoints = function (points) {
             occurrence[slope] = count;
             max = ((count > max) && count) || max; 
         }
-        results[i] = max;
+        results[i] = max + 1; // include Point i
     }
-    return Math.max(results);
+    return Math.max.apply(Math, results);
 };
 
 module.exports = findMaxPoints;
