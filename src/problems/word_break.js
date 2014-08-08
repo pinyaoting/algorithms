@@ -19,7 +19,7 @@ var wordBreak = function (keyword, dictionary) {
             if (i === length) {
                 return true;
             }
-            callstack.push(match);
+            callstack.push(i);
         }
     }
     return false;
