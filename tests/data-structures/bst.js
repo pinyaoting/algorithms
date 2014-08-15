@@ -1,5 +1,5 @@
 /*jslint indent: 4, nomen:true, white:true */
-/*global require, describe:true,it:true*/
+/*global require, describe:true,it:true,beforeEach:true,afterEach:true*/
 
 var expect = require('chai').expect,
     test = require('../../src/data-structures/bst.js');
@@ -12,7 +12,7 @@ describe('BST', function () {
     });
 
     afterEach(function () {
-        delete module;
+        module = null;
     });
 
     it('should store data', function (done) {
